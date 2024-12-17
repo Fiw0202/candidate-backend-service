@@ -8,6 +8,7 @@ import {
 } from "./dto/request/candidate.request.dto";
 import {
   createCandidateController,
+  getCandidate,
   getCandidates,
   updateArchiveCandidateController,
   updateStatusCandidateController,
@@ -27,6 +28,26 @@ const candidateRouter = Router();
  *         description: List of all candidates
  */
 candidateRouter.get("/", authMiddleware, getCandidates);
+
+/**
+ * @swagger
+ * /candidate/{id}:
+ *   get:
+ *     summary: Get candidate by Id
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: number
+ *         description: get candidate by Id
+ *     responses:
+ *       200:
+ *         description: Candidate data
+ */
+candidateRouter.get("/:id", authMiddleware, getCandidate);
 
 /**
  * @swagger

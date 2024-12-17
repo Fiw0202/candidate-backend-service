@@ -17,6 +17,16 @@ export const getAllCandidates = async () => {
   }
 };
 
+export const getCandidate = async (id: number) => {
+  try {
+    const candidates = await candidateRepository.findCandidateById(id);
+    return candidates;
+  } catch (err) {
+    console.error("Error fetching candidates:", err);
+    throw err;
+  }
+};
+
 export const createCandidate = async (
   req: ReqCreateCandidateDto,
   userId: number | undefined

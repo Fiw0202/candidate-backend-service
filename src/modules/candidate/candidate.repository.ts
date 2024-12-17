@@ -18,8 +18,11 @@ export class CandidateRepository {
     });
   }
 
-  public async findAllCandidatesById(id: number): Promise<Candidate | null> {
-    return await this.candidateRepository.findOneBy({ id });
+  public async findCandidateById(id: number): Promise<Candidate | null> {
+    return await this.candidateRepository.findOne({
+      where: { id: id, isArchive: false },
+      relations: { createdBy: true, comments: { createdBy: true } },
+    });
   }
 
   public async createCandidate(

@@ -24,7 +24,7 @@ export const createComment = async (
       throw new Error("UserId is required");
     }
 
-    const candidate = await candidateRepository.findAllCandidatesById(
+    const candidate = await candidateRepository.findCandidateById(
       req.candidateId
     );
     if (!candidate) throw new Error("Candidate is required");

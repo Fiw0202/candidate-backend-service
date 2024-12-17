@@ -11,6 +11,15 @@ export const getCandidates = async (req: Request, res: Response) => {
   }
 };
 
+export const getCandidate = async (req: Request, res: Response) => {
+  try {
+    const candidates = await CandidateService.getCandidate(+req.params.id);
+    res.status(200).json({ success: true, data: candidates });
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+};
+
 export const createCandidateController = async (
   req: CustomRequest,
   res: Response
