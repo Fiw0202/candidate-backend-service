@@ -24,6 +24,15 @@ const swaggerOptions = {
         url: `http://localhost:${process.env.PORT}/api`,
       },
     ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
   },
   apis: ["./src/modules/**/*.ts"],
 };
@@ -44,8 +53,13 @@ app.use(
     res: express.Response,
     next: express.NextFunction
   ) => {
-    console.error(err.stack);
-    res.status(500).send({ message: "Something went wrong!" });
+    console.error("app err", err);
+
+    const statusCode = err.statusCode || 500;
+    res.status(statusCode).json({
+      success: false,
+      message: err.message || "Internal Server Error",
+    });
   }
 );
 
