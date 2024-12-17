@@ -29,6 +29,13 @@ export class Comment implements ICommentEntity {
   @CreateDateColumn()
   createDate: Date;
 
+  @Column({
+    name: "candidateId",
+    type: "int",
+    nullable: false,
+  })
+  candidateId: number;
+
   @ManyToOne(() => Candidate, (candidate) => candidate.comments, {
     nullable: false,
   })
@@ -37,5 +44,5 @@ export class Comment implements ICommentEntity {
 
   @ManyToOne(() => User, (user) => user.comments, { nullable: false })
   @JoinColumn({ name: "createdBy" })
-  user: User;
+  createdBy: User;
 }

@@ -30,6 +30,6 @@ export class User implements IUserEntity {
   @OneToMany(() => Candidate, (candidate) => candidate.createdBy)
   candidates: Candidate[];
 
-  @OneToMany(() => Comment, (comment) => comment.user)
+  @OneToMany(() => Comment, (comment) => comment.createdBy)
   comments: Comment[];
 }

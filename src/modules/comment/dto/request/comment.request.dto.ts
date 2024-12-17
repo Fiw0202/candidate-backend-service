@@ -1,7 +1,11 @@
-import { IsString, IsNotEmpty, IsEmail } from "class-validator";
+import { IsString, IsNotEmpty, IsEmail, IsNumber } from "class-validator";
 
 export class ReqCreateCommentDto {
   @IsString()
   @IsNotEmpty()
   comment: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  candidateId: number;
 }

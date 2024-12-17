@@ -3,4 +3,5 @@ export interface ICommentEntity {
   comment: string;
   isDelete?: boolean;
   createDate: Date;
+  candidateId: number;
 }
