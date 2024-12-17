@@ -1,5 +1,9 @@
 import { CandidateRepository } from "./candidate.repository";
-import { ReqCreateCandidateDto } from "./dto/request/candidate.request.dto";
+import {
+  ReqCreateCandidateDto,
+  ReqUpdateArchiveCandidateDto,
+  ReqUpdateStatusCandidateDto,
+} from "./dto/request/candidate.request.dto";
 
 const candidateRepository = new CandidateRepository();
 
@@ -31,6 +35,36 @@ export const createCandidate = async (
     };
   } catch (err) {
     console.error("Error creating candidate:", err);
+    throw err;
+  }
+};
+
+export const updateArchiveCandidate = async (
+  req: ReqUpdateArchiveCandidateDto
+) => {
+  try {
+    await candidateRepository.updateArchiveCandidate(req);
+
+    return {
+      message: "Updated",
+    };
+  } catch (err) {
+    console.error("Error update candidate:", err);
+    throw err;
+  }
+};
+
+export const updateStatusCandidate = async (
+  req: ReqUpdateStatusCandidateDto
+) => {
+  try {
+    await candidateRepository.updateStatusCandidate(req);
+
+    return {
+      message: "Updated",
+    };
+  } catch (err) {
+    console.error("Error update candidate:", err);
     throw err;
   }
 };

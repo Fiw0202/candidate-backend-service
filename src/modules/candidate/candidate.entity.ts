@@ -31,6 +31,14 @@ export class Candidate implements ICandidateEntity {
   })
   status: ECandidateStatus;
 
+  @Column({
+    name: "isArchive",
+    type: "boolean",
+    nullable: false,
+    default: false,
+  })
+  isArchive?: boolean;
+
   @CreateDateColumn()
   createDate: Date;
 
