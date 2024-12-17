@@ -15,12 +15,19 @@ export const getAllUsers = async () => {
 
 export const createUser = async (req: ReqCreateUserDto) => {
   try {
+    const exitsUser = await userRepository.findUser(req);
+    if (exitsUser) {
+      return {
+        status: 200,
+        message: "Username already exists",
+      };
+    }
     const newUser = await userRepository.createUser(req);
     return {
       user: newUser.firstName,
     };
   } catch (err) {
     console.log(err);
-    throw err;
+    return err;
   }
 };

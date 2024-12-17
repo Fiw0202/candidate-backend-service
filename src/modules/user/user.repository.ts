@@ -1,7 +1,8 @@
 import { AppDataSource } from "../../config/database.config";
+import { ReqFindUserDto } from "./dto/request/user.request.dto";
+import { IWhereFindUser } from "./interface/user.interface";
 import { User } from "./user.entity";
 import { Repository } from "typeorm";
-
 export class UserRepository {
   private userRepository: Repository<User>;
 
@@ -13,14 +14,21 @@ export class UserRepository {
     return await this.userRepository.find();
   }
 
-  public async findUserById(id: number): Promise<User | null> {
-    return await this.userRepository.findOneBy({ id });
+  public async findUser(req: ReqFindUserDto): Promise<User | null> {
+    const whereConditions: IWhereFindUser = {};
+    if (req?.id) whereConditions.id = req.id;
+    if (req?.userName) whereConditions.userName = req.userName;
+
+    console.log(whereConditions);
+
+    const user = await this.userRepository.findOne({
+      where: whereConditions,
+    });
+    return user;
   }
 
   public async createUser(userData: Partial<User>): Promise<User> {
-    console.log(userData);
     const newUser = this.userRepository.create(userData);
-    console.log("Creating new user:", userData);
     return await this.userRepository.save(newUser);
   }
 }

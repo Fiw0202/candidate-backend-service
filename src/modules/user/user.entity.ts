@@ -12,15 +12,6 @@ export class User implements IUserEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({
-    name: "username",
-    type: "varchar",
-    length: 50,
-    nullable: false,
-    unique: true,
-  })
-  userName: string;
-
   @Column({ name: "firstname", type: "varchar", length: 50, nullable: false })
   firstName: string;
 

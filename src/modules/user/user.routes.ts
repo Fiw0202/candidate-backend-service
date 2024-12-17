@@ -43,4 +43,8 @@ userRouter.get("/", getUsers);
  */
 userRouter.post("/", validateRequest(ReqCreateUserDto), createUser);
 
+userRouter.get("/test", (req, res) => {
+  res.send("Hello user!");
+});
+
 export default userRouter;

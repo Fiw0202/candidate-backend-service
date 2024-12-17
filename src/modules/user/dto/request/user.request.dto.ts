@@ -1,9 +1,12 @@
-import { IsString, IsNotEmpty, IsEmail } from "class-validator";
+import {
+  IsString,
+  IsNotEmpty,
+  IsEmail,
+  IsNumber,
+  IsOptional,
+} from "class-validator";
 
 export class ReqCreateUserDto {
-  @IsString()
-  @IsNotEmpty()
-  userName: string;
 
   @IsString()
   @IsNotEmpty()
@@ -20,4 +23,18 @@ export class ReqCreateUserDto {
   @IsString()
   @IsNotEmpty()
   password: string;
+}
+
+export class ReqFindUserDto {
+  @IsNumber()
+  @IsOptional()
+  id?: number;
+
+  @IsString()
+  @IsOptional()
+  userName?: string;
+
+  @IsString()
+  @IsOptional()
+  email?: string;
 }
