@@ -7,7 +7,7 @@ import { authMiddleware } from "../../middleware/auth.middleware";
 const userRouter = Router();
 /**
  * @swagger
- * /users:
+ * /user:
  *   get:
  *     summary: Get all users
  *     security:
@@ -20,7 +20,7 @@ userRouter.get("/", authMiddleware, getUsers);
 
 /**
  * @swagger
- * /users:
+ * /user:
  *   post:
  *     summary: Create a new user
  *     requestBody:
@@ -42,7 +42,12 @@ userRouter.get("/", authMiddleware, getUsers);
  *       201:
  *         description: User created successfully
  */
-userRouter.post("/", validateRequest(ReqCreateUserDto), createUser);
+userRouter.post(
+  "/",
+  authMiddleware,
+  validateRequest(ReqCreateUserDto),
+  createUser
+);
 
 userRouter.get("/test", (req, res) => {
   res.send("Hello user!");

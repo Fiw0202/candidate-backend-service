@@ -7,7 +7,7 @@ import { createComment, getComments } from "./comment.controller";
 const commentRouter = Router();
 /**
  * @swagger
- * /comments:
+ * /comment:
  *   get:
  *     summary: Get all comment
  *     responses:
@@ -18,7 +18,7 @@ commentRouter.get("/", getComments);
 
 /**
  * @swagger
- * /comments:
+ * /comment:
  *   post:
  *     summary: Create a new comment
  *     requestBody:
