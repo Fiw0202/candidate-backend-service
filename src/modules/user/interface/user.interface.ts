@@ -8,6 +8,5 @@ export interface IUserEntity {
 
 export interface IWhereFindUser {
   id?: number;
-  userName?: string;
   email?: string;
 }

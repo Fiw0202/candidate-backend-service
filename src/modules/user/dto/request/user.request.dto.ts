@@ -7,7 +7,6 @@ import {
 } from "class-validator";
 
 export class ReqCreateUserDto {
-
   @IsString()
   @IsNotEmpty()
   firstName: string;
@@ -29,10 +28,6 @@ export class ReqFindUserDto {
   @IsNumber()
   @IsOptional()
   id?: number;
-
-  @IsString()
-  @IsOptional()
-  userName?: string;
 
   @IsString()
   @IsOptional()

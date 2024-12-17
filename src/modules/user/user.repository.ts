@@ -17,9 +17,7 @@ export class UserRepository {
   public async findUser(req: ReqFindUserDto): Promise<User | null> {
     const whereConditions: IWhereFindUser = {};
     if (req?.id) whereConditions.id = req.id;
-    if (req?.userName) whereConditions.userName = req.userName;
-
-    console.log(whereConditions);
+    if (req?.email) whereConditions.email = req.email;
 
     const user = await this.userRepository.findOne({
       where: whereConditions,

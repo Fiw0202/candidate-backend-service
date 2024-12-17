@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import { ReqCreateUserDto } from "./dto/request/user.request.dto";
 import { UserRepository } from "./user.repository";
 
@@ -22,7 +23,11 @@ export const createUser = async (req: ReqCreateUserDto) => {
         message: "Username already exists",
       };
     }
-    const newUser = await userRepository.createUser(req);
+    const hashedPassword = await bcrypt.hash(req.password, 10);
+    const newUser = await userRepository.createUser({
+      ...req,
+      password: hashedPassword,
+    });
     return {
       user: newUser.firstName,
     };

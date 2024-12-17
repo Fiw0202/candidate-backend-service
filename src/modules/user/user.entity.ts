@@ -22,6 +22,6 @@ export class User implements IUserEntity {
   @Unique(["email"])
   email: string;
 
-  @Column({ name: "password", type: "varchar", length: 50, nullable: false })
+  @Column({ name: "password", type: "varchar", length: 255, nullable: false })
   password: string;
 }

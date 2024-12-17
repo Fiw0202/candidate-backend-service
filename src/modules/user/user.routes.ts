@@ -2,6 +2,7 @@ import { Router } from "express";
 import { getUsers, createUser } from "./user.controller";
 import { ReqCreateUserDto } from "./dto/request/user.request.dto";
 import { validateRequest } from "../../middleware/payload-validator";
+import { authMiddleware } from "../../middleware/auth.middleware";
 
 const userRouter = Router();
 /**
@@ -9,11 +10,13 @@ const userRouter = Router();
  * /users:
  *   get:
  *     summary: Get all users
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: List of all users
  */
-userRouter.get("/", getUsers);
+userRouter.get("/", authMiddleware, getUsers);
 
 /**
  * @swagger
@@ -27,8 +30,6 @@ userRouter.get("/", getUsers);
  *           schema:
  *             type: object
  *             properties:
- *              userName:
- *                 type: string
  *               firstName:
  *                 type: string
  *               lastName:
