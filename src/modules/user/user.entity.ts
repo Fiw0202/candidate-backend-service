@@ -6,6 +6,8 @@ import {
   Unique,
 } from "typeorm";
 import { IUserEntity } from "./interface/user.interface";
+import { Candidate } from "../candidate/candidate.entity";
+import { Comment } from "../comment/comment.entity";
 
 @Entity("users")
 export class User implements IUserEntity {
@@ -24,4 +26,10 @@ export class User implements IUserEntity {
 
   @Column({ name: "password", type: "varchar", length: 255, nullable: false })
   password: string;
+
+  @OneToMany(() => Candidate, (candidate) => candidate.createdBy)
+  candidates: Candidate[];
+
+  @OneToMany(() => Comment, (comment) => comment.user)
+  comments: Comment[];
 }

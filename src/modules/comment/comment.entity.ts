@@ -7,6 +7,8 @@ import {
   CreateDateColumn,
 } from "typeorm";
 import { ICommentEntity } from "./interface/comment.interface";
+import { Candidate } from "../candidate/candidate.entity";
+import { User } from "../user/user.entity";
 
 @Entity("comments")
 export class Comment implements ICommentEntity {
@@ -26,4 +28,14 @@ export class Comment implements ICommentEntity {
 
   @CreateDateColumn()
   createDate: Date;
+
+  @ManyToOne(() => Candidate, (candidate) => candidate.comments, {
+    nullable: false,
+  })
+  @JoinColumn({ name: "candidateId" })
+  candidate: Candidate;
+
+  @ManyToOne(() => User, (user) => user.comments, { nullable: false })
+  @JoinColumn({ name: "createdBy" })
+  user: User;
 }
