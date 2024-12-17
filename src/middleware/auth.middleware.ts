@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 import { User } from "../modules/user/user.entity";
 
-interface CustomRequest extends Request {
+export interface CustomRequest extends Request {
   user?: User;
 }
 
