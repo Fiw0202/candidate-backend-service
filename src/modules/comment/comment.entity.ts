@@ -16,7 +16,12 @@ export class Comment implements ICommentEntity {
   @Column({ name: "comment", type: "text", nullable: false })
   comment: string;
 
-  @Column({ name: "isDelete", type: "boolean", nullable: true })
+  @Column({
+    name: "isDelete",
+    type: "boolean",
+    nullable: false,
+    default: false,
+  })
   isDelete?: boolean;
 
   @CreateDateColumn()
