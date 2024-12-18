@@ -11,6 +11,7 @@ import { ICandidateEntity } from "./interface/candidate.interface";
 import { ECandidateStatus } from "../../utils/enum/candidate-status-enum";
 import { User } from "../user/user.entity";
 import { Comment } from "../comment/comment.entity";
+import { HistoryLog } from "../history-log/history-log.entity";
 
 @Entity("candidate")
 export class Candidate implements ICandidateEntity {
@@ -48,4 +49,7 @@ export class Candidate implements ICandidateEntity {
 
   @OneToMany(() => Comment, (comment) => comment.candidate)
   comments: Comment[];
+
+  @OneToMany(() => HistoryLog, (historyLog) => historyLog.candidate)
+  historyLog: HistoryLog;
 }

@@ -8,6 +8,7 @@ import {
 import { IUserEntity } from "./interface/user.interface";
 import { Candidate } from "../candidate/candidate.entity";
 import { Comment } from "../comment/comment.entity";
+import { HistoryLog } from "../history-log/history-log.entity";
 
 @Entity("users")
 export class User implements IUserEntity {
@@ -32,4 +33,7 @@ export class User implements IUserEntity {
 
   @OneToMany(() => Comment, (comment) => comment.createdBy)
   comments: Comment[];
+
+  @OneToMany(() => HistoryLog, (history) => history.createBy)
+  history?: HistoryLog[];
 }
