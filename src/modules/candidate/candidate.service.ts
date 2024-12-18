@@ -7,6 +7,8 @@ import {
 
 const candidateRepository = new CandidateRepository();
 
+//TODO :need to user history log service 
+
 export const getAllCandidates = async () => {
   try {
     const candidates = await candidateRepository.findAllCandidates();

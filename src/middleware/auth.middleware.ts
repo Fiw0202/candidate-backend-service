@@ -1,10 +1,14 @@
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 import { Request, Response, NextFunction } from "express";
 import { User } from "../modules/user/user.entity";
 
+dotenv.config();
 export interface CustomRequest extends Request {
   user?: User;
 }
+
+//TODO : Add middleware to grant the user permission to edit
 
 export const authMiddleware = async (
   req: CustomRequest,
