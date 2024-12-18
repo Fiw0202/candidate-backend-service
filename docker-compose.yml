@@ -1,6 +1,25 @@
+##TODO - Fix can't start container_name: candidate_service should run local to start service
+
 version: '3.8'
 
 services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: candidate_service
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      DATABASE_URL: postgres://postgres:admin@postgres:5432/candidate_db
+    depends_on:
+      - postgres
+    volumes:
+      - .:/usr/src/app
+      - .:/usr/src/app/node_modules
+
   postgres:
     image: postgres:15
     container_name: postgres_db
