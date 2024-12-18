@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { User } from "../modules/user/user.entity";
 import { Comment } from "../modules/comment/comment.entity";
 import { Candidate } from "../modules/candidate/candidate.entity";
+import { HistoryLog } from "../modules/history-log/history-log.entity";
 
 dotenv.config();
 
@@ -15,7 +16,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DATABASE_USERNAME,
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
-  entities: [User, Comment, Candidate],
+  entities: [User, Comment, Candidate, HistoryLog],
   synchronize: true,
   logging: true,
 });
